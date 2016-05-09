@@ -2,6 +2,7 @@
 #include <allegro5/allegro_primitives.h>
 
 #include <stdio.h>
+#include <time.h>
 #include <stdbool.h>
 #include "graph.h"
 
@@ -11,12 +12,13 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w);
 const int LARGURA_TELA = 1100;
 const int ALTURA_TELA = 648;
 
-int i=0;
+int i=0, aux;
 Vertex pi[46];
 
 ALLEGRO_DISPLAY *janela = NULL;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_BITMAP *imagem = NULL;
+ALLEGRO_BITMAP *icon = NULL;
 
 int main(){
 
@@ -141,7 +143,7 @@ printf("\n");
 
     al_clear_to_color(al_map_rgb(0, 0, 0));
 	al_flip_display();
-	
+
     while(1){
 		al_draw_bitmap(imagem, 0,0,0);
       	ALLEGRO_EVENT ev;
@@ -151,7 +153,16 @@ printf("\n");
        	  break;
       	}
 
-		desenhar(ev, ev.mouse.x, ev.mouse.y);
+      	/*for(i = 0; i < 10; i++)
+        {
+            //srand ( time(NULL) );
+            aux = rand() % 45;
+            al_draw_bitmap(icon, posicoes[aux].x- 10, posicoes[aux].y - 35,0);
+            printf("aux = %d", aux);
+            al_draw_filled_circle(posicoes[BASE].x, posicoes[BASE].y, 10, al_map_rgb(0, 0, 255));
+            routeConstruct(aux,pi);
+        }*/
+        desenhar(ev, ev.mouse.x, ev.mouse.y);
    }
 
    al_destroy_display(janela);
@@ -196,6 +207,7 @@ bool inicializar()
     al_init_image_addon();
 
     imagem = al_load_bitmap("telafinal.png");
+    icon = al_load_bitmap("iconMapa.png");
    al_register_event_source(event_queue, al_get_display_event_source(janela));
    al_register_event_source(event_queue, al_get_mouse_event_source());
 
@@ -210,18 +222,29 @@ void posicao(int q, int w)
 void desenhar(ALLEGRO_EVENT ev1, int q, int w)
 {
     ALLEGRO_EVENT ev2;
-      al_wait_for_event(event_queue, &ev2);
     if(ev1.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
             posicao(ev2.mouse.x,ev2.mouse.y);
-            //if(i < 5){
-                i++;
-                al_draw_filled_circle(ev2.mouse.x, ev2.mouse.y, 10, al_map_rgb(0, 0, 255));
-                routeConstruct(45,pi);
+                //al_draw_filled_circle(ev2.mouse.x, ev2.mouse.y, 10, al_map_rgb(0, 0, 255));
+                for(i = 1 ; i < 46; i++)
+                {
+                    if(ev1.mouse.x > posicoes[i].x && ev1.mouse.x < posicoes[i+1].x)
+                    {
+                        if(ev1.mouse.x - posicoes[i].x < posicoes[i+1].x - ev1.mouse.x)
+                        {
+                            aux = i;
+                            printf("no Teste");
+
+                        }
+                        else
+                        {
+                            printf("Teste");
+                            aux = i+1;
+
+                        }
+                    }
+                }
+                routeConstruct(aux,pi);
+                al_draw_bitmap(icon, posicoes[aux].x- 10, posicoes[aux].y - 35,0);
                 al_flip_display();
-            //}
-            /*else
-            {
-                al_flip_display();
-            }*/
-      }
+}
 }
