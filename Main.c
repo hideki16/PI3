@@ -52,6 +52,7 @@ printf("\n");
     }
 
     al_draw_bitmap(imagem, 0,0,0);
+    al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
 	al_flip_display();
 
     while(1){
@@ -128,15 +129,8 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
     ALLEGRO_EVENT ev2;
     if(ev1.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
             posicao(q,w);
- printf("\n\n ----------------------------- \n\n");
                 for(i = 1; i<= 45; i++){
-                  ymin = (posicoes[i].x - ev1.mouse.x)^2 + (posicoes[i].y - ev1.mouse.y)^2;
-
-
-                if(ymin < 0)
-                    ymin *= -1;
-
-                    printf("%d\n",ymin);
+                  ymin = ((ev1.mouse.x - posicoes[i].x) * (ev1.mouse.x - posicoes[i].x)) + ((ev1.mouse.y - posicoes[i].y) * (ev1.mouse.y - posicoes[i].y));
 
                   if(ymin < dmin){
                     dmin = ymin;
@@ -146,6 +140,7 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
 
                 routeConstruct(prox,pi);
                 al_draw_bitmap(icon, posicoes[prox].x- 10, posicoes[prox].y - 35,0);
+                al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
                 al_flip_display();
                 dmin = INT_MAX;
 }

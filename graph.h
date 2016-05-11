@@ -4,9 +4,9 @@
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
-#define BASE 13
+#define BASE 27
 
-int points[10];
+Vertex points[5];
 int numberOfPoints = 0;
 
 typedef struct node *link2;
@@ -282,6 +282,7 @@ posicoes[14].x = 270;
 posicoes[14].y = 239;
 posicoes[15].x = 462;
 posicoes[15].y = 243;
+//aqui ^
 posicoes[16].x = 655;
 posicoes[16].y = 251;
 posicoes[17].x = 1002;
