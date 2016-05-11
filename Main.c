@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <math.h>
+#include <limits.h>
 #include <stdbool.h>
 #include "graph.h"
 
@@ -12,7 +14,7 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w);
 const int LARGURA_TELA = 1100;
 const int ALTURA_TELA = 648;
 
-int i=0, aux;
+int i=0, aux, dmin, xmin, ymin;
 Vertex pi[46];
 
 ALLEGRO_DISPLAY *janela = NULL;
@@ -24,6 +26,8 @@ int main(){
 
 	Digraph teste = DIGRAPHinit(46);
 	double a[46];
+  dmin = INT_MAX;
+
 
 	insereArestas(teste);
     inserePosicoes();
@@ -123,8 +127,18 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
     ALLEGRO_EVENT ev2;
     if(ev1.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
             posicao(ev2.mouse.x,ev2.mouse.y);
-                //al_draw_filled_circle(ev2.mouse.x, ev2.mouse.y, 10, al_map_rgb(0, 0, 255));
-                for(i = 1 ; i < 46; i++)
+                for(i=1; i<=45; i++){
+                  dmin = (posicoes[i].x - ev1.mouse.x)^2 + (posicoes[i].y - ev1.mouse.y)^2
+                }
+                
+                routeConstruct(aux,pi);
+                al_draw_bitmap(icon, posicoes[dmin].x- 10, posicoes[dmin].y - 35,0);
+                al_flip_display();
+}
+}
+
+/*
+for(i = 1 ; i < 46; i++)
                 {
                     if(ev1.mouse.x > posicoes[i].x && ev1.mouse.x < posicoes[i+1].x)
                     {
@@ -142,8 +156,4 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
                         }
                     }
                 }
-                routeConstruct(aux,pi);
-                al_draw_bitmap(icon, posicoes[aux].x- 10, posicoes[aux].y - 35,0);
-                al_flip_display();
-}
-}
+*/
