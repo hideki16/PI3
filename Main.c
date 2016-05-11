@@ -15,6 +15,7 @@ const int LARGURA_TELA = 1100;
 const int ALTURA_TELA = 648;
 
 int i=0, aux, dmin, xmin, ymin;
+Vertex prox;
 Vertex pi[46];
 
 ALLEGRO_DISPLAY *janela = NULL;
@@ -126,14 +127,27 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
 {
     ALLEGRO_EVENT ev2;
     if(ev1.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-            posicao(ev2.mouse.x,ev2.mouse.y);
-                for(i=1; i<=45; i++){
-                  dmin = (posicoes[i].x - ev1.mouse.x)^2 + (posicoes[i].y - ev1.mouse.y)^2
+            posicao(q,w);
+ printf("\n\n ----------------------------- \n\n");
+                for(i = 1; i<= 45; i++){
+                  ymin = (posicoes[i].x - ev1.mouse.x)^2 + (posicoes[i].y - ev1.mouse.y)^2;
+
+
+                if(ymin < 0)
+                    ymin *= -1;
+
+                    printf("%d\n",ymin);
+
+                  if(ymin < dmin){
+                    dmin = ymin;
+                    prox = i;
+                  }
                 }
-                
-                routeConstruct(aux,pi);
-                al_draw_bitmap(icon, posicoes[dmin].x- 10, posicoes[dmin].y - 35,0);
+
+                routeConstruct(prox,pi);
+                al_draw_bitmap(icon, posicoes[prox].x- 10, posicoes[prox].y - 35,0);
                 al_flip_display();
+                dmin = INT_MAX;
 }
 }
 
