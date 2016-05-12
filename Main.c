@@ -10,12 +10,12 @@ int main(){
     double a[46];
     int i;
     
-    Digraph teste = DIGRAPHinit(46);
+    Digraph digraph = DIGRAPHinit(46);
     dmin = INT_MAX;
     
-    insereArestas(teste);
+    insereArestas(digraph);
     inserePosicoes();
-    AlgDijkstra(teste, BASE, pi, a);
+    AlgDijkstra(digraph, BASE, pi, a);
     
     if (!inicializar()){return -1;}
     

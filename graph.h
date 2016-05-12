@@ -133,124 +133,121 @@ void calculaRotas(int numberOfPoints){
 
 }
 
-
-
-
-void insereArestas(Digraph teste){
-   DIGRAPHinsertA(teste, 1, 7, 120);
-   DIGRAPHinsertA(teste, 1, 8, 120);
+void insereArestas(Digraph digraph){
+   DIGRAPHinsertA(digraph, 1, 7, 120);
+   DIGRAPHinsertA(digraph, 1, 8, 120);
    
-   DIGRAPHinsertA(teste, 2, 8, 120);
-   DIGRAPHinsertA(teste, 2, 9, 120);
+   DIGRAPHinsertA(digraph, 2, 8, 120);
+   DIGRAPHinsertA(digraph, 2, 9, 120);
    
-   DIGRAPHinsertA(teste, 3, 9, 120);
-   DIGRAPHinsertA(teste, 3, 10, 130);
+   DIGRAPHinsertA(digraph, 3, 9, 120);
+   DIGRAPHinsertA(digraph, 3, 10, 130);
    
-   DIGRAPHinsertA(teste, 4, 10, 130);
+   DIGRAPHinsertA(digraph, 4, 10, 130);
    
-   DIGRAPHinsertA(teste, 5, 16, 240);
-   DIGRAPHinsertA(teste, 5, 11, 130);
+   DIGRAPHinsertA(digraph, 5, 16, 240);
+   DIGRAPHinsertA(digraph, 5, 11, 130);
    
-   DIGRAPHinsertA(teste, 6, 11, 130);
-   DIGRAPHinsertA(teste, 6, 12, 120);
+   DIGRAPHinsertA(digraph, 6, 11, 130);
+   DIGRAPHinsertA(digraph, 6, 12, 120);
    
-   DIGRAPHinsertA(teste, 7, 13, 110);
+   DIGRAPHinsertA(digraph, 7, 13, 110);
    
-   DIGRAPHinsertA(teste, 8, 13, 110);
-   DIGRAPHinsertA(teste, 8, 14, 130);
+   DIGRAPHinsertA(digraph, 8, 13, 110);
+   DIGRAPHinsertA(digraph, 8, 14, 130);
    
-   DIGRAPHinsertA(teste, 9, 14, 120);
-   DIGRAPHinsertA(teste, 9, 15, 140);
+   DIGRAPHinsertA(digraph, 9, 14, 120);
+   DIGRAPHinsertA(digraph, 9, 15, 140);
    
-   DIGRAPHinsertA(teste, 10, 15, 120);
-   DIGRAPHinsertA(teste, 10, 16, 150);
+   DIGRAPHinsertA(digraph, 10, 15, 120);
+   DIGRAPHinsertA(digraph, 10, 16, 150);
    
-   DIGRAPHinsertA(teste, 11, 17, 120);
+   DIGRAPHinsertA(digraph, 11, 17, 120);
    
-   DIGRAPHinsertA(teste, 12, 17, 120);
+   DIGRAPHinsertA(digraph, 12, 17, 120);
    
-   DIGRAPHinsertA(teste, 13, 18, 120);
-   DIGRAPHinsertA(teste, 13, 19, 140);
+   DIGRAPHinsertA(digraph, 13, 18, 120);
+   DIGRAPHinsertA(digraph, 13, 19, 140);
    
-   DIGRAPHinsertA(teste, 14, 19, 120);
-   DIGRAPHinsertA(teste, 14, 20, 140);
+   DIGRAPHinsertA(digraph, 14, 19, 120);
+   DIGRAPHinsertA(digraph, 14, 20, 140);
    
-   DIGRAPHinsertA(teste, 15, 20, 120);
-   DIGRAPHinsertA(teste, 15, 21, 140);
+   DIGRAPHinsertA(digraph, 15, 20, 120);
+   DIGRAPHinsertA(digraph, 15, 21, 140);
    
-   DIGRAPHinsertA(teste, 16, 21, 110);
-   DIGRAPHinsertA(teste, 16, 22, 120);
+   DIGRAPHinsertA(digraph, 16, 21, 110);
+   DIGRAPHinsertA(digraph, 16, 22, 120);
    
-   DIGRAPHinsertA(teste, 17, 23, 120);
-   DIGRAPHinsertA(teste, 17, 24, 120);
+   DIGRAPHinsertA(digraph, 17, 23, 120);
+   DIGRAPHinsertA(digraph, 17, 24, 120);
    
-   DIGRAPHinsertA(teste, 18, 25, 130);
+   DIGRAPHinsertA(digraph, 18, 25, 130);
    
-   DIGRAPHinsertA(teste, 19, 25, 120);
-   DIGRAPHinsertA(teste, 19, 26, 75);
-   DIGRAPHinsertA(teste, 19, 27, 140);
+   DIGRAPHinsertA(digraph, 19, 25, 120);
+   DIGRAPHinsertA(digraph, 19, 26, 75);
+   DIGRAPHinsertA(digraph, 19, 27, 140);
    
-   DIGRAPHinsertA(teste, 20, 27, 110);
-   DIGRAPHinsertA(teste, 20, 28, 140);
+   DIGRAPHinsertA(digraph, 20, 27, 110);
+   DIGRAPHinsertA(digraph, 20, 28, 140);
    
-   DIGRAPHinsertA(teste, 21, 28, 110);
-   DIGRAPHinsertA(teste, 21, 29, 120);
+   DIGRAPHinsertA(digraph, 21, 28, 110);
+   DIGRAPHinsertA(digraph, 21, 29, 120);
    
-   DIGRAPHinsertA(teste, 22, 29, 120);
-   DIGRAPHinsertA(teste, 22, 30, 110);
+   DIGRAPHinsertA(digraph, 22, 29, 120);
+   DIGRAPHinsertA(digraph, 22, 30, 110);
    
-   DIGRAPHinsertA(teste, 23, 30, 120);
-   DIGRAPHinsertA(teste, 23, 31, 110);
+   DIGRAPHinsertA(digraph, 23, 30, 120);
+   DIGRAPHinsertA(digraph, 23, 31, 110);
    
-   DIGRAPHinsertA(teste, 24, 31, 120);
+   DIGRAPHinsertA(digraph, 24, 31, 120);
    
-   DIGRAPHinsertA(teste, 25, 32, 120);
-   DIGRAPHinsertA(teste, 25, 33, 75);
-   DIGRAPHinsertA(teste, 25, 34, 140);
+   DIGRAPHinsertA(digraph, 25, 32, 120);
+   DIGRAPHinsertA(digraph, 25, 33, 75);
+   DIGRAPHinsertA(digraph, 25, 34, 140);
    
-   DIGRAPHinsertA(teste, 26, 33, 110);
-   DIGRAPHinsertA(teste, 26, 27, 57);
+   DIGRAPHinsertA(digraph, 26, 33, 110);
+   DIGRAPHinsertA(digraph, 26, 27, 57);
    
-   DIGRAPHinsertA(teste, 27, 34, 120);
-   DIGRAPHinsertA(teste, 27, 35, 150);
+   DIGRAPHinsertA(digraph, 27, 34, 120);
+   DIGRAPHinsertA(digraph, 27, 35, 150);
    
-   DIGRAPHinsertA(teste, 28, 35, 130);
-   DIGRAPHinsertA(teste, 28, 36, 120);
+   DIGRAPHinsertA(digraph, 28, 35, 130);
+   DIGRAPHinsertA(digraph, 28, 36, 120);
    
-   DIGRAPHinsertA(teste, 29, 36, 120);
-   DIGRAPHinsertA(teste, 29, 37, 120);
+   DIGRAPHinsertA(digraph, 29, 36, 120);
+   DIGRAPHinsertA(digraph, 29, 37, 120);
    
-   DIGRAPHinsertA(teste, 30, 38, 130);
-   DIGRAPHinsertA(teste, 30, 37, 120);
+   DIGRAPHinsertA(digraph, 30, 38, 130);
+   DIGRAPHinsertA(digraph, 30, 37, 120);
    
-   DIGRAPHinsertA(teste, 31, 38, 120);
-   DIGRAPHinsertA(teste, 31, 39, 120);
+   DIGRAPHinsertA(digraph, 31, 38, 120);
+   DIGRAPHinsertA(digraph, 31, 39, 120);
    
-   DIGRAPHinsertA(teste, 32, 40, 140);
+   DIGRAPHinsertA(digraph, 32, 40, 140);
    
-   DIGRAPHinsertA(teste, 33, 34, 63);
+   DIGRAPHinsertA(digraph, 33, 34, 63);
    
-   DIGRAPHinsertA(teste, 34, 40, 120);
-   DIGRAPHinsertA(teste, 34, 41, 140);
+   DIGRAPHinsertA(digraph, 34, 40, 120);
+   DIGRAPHinsertA(digraph, 34, 41, 140);
    
-   DIGRAPHinsertA(teste, 35, 41, 130);
-   DIGRAPHinsertA(teste, 35, 42, 120);
+   DIGRAPHinsertA(digraph, 35, 41, 130);
+   DIGRAPHinsertA(digraph, 35, 42, 120);
    
-   DIGRAPHinsertA(teste, 36, 42, 100);
-   DIGRAPHinsertA(teste, 36, 43, 130);
+   DIGRAPHinsertA(digraph, 36, 42, 100);
+   DIGRAPHinsertA(digraph, 36, 43, 130);
    
-   DIGRAPHinsertA(teste, 37, 43, 130);
-   DIGRAPHinsertA(teste, 37, 44, 110);
+   DIGRAPHinsertA(digraph, 37, 43, 130);
+   DIGRAPHinsertA(digraph, 37, 44, 110);
    
-   DIGRAPHinsertA(teste, 38, 44, 120);
-   DIGRAPHinsertA(teste, 38, 45, 120);
+   DIGRAPHinsertA(digraph, 38, 44, 120);
+   DIGRAPHinsertA(digraph, 38, 45, 120);
    
-   DIGRAPHinsertA(teste, 39, 45, 110);
+   DIGRAPHinsertA(digraph, 39, 45, 110);
 
 }
 
 void inserePosicoes(){
-	posicoes[1].x = 70;
+posicoes[1].x = 70;
 posicoes[1].y = 67;
 posicoes[2].x = 244;
 posicoes[2].y = 52;
