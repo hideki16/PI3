@@ -19,12 +19,7 @@ int main(){
     
     if (!inicializar()){return -1;}
     
-    al_clear_to_color(al_map_rgb(250,250,250));
-    al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
-    al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
-    al_draw_bitmap(imagem, 0,0,0);
-    al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
-    al_flip_display();
+    limparTela();
     
     while(1){
         ALLEGRO_EVENT ev;
@@ -35,6 +30,7 @@ int main(){
             if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 450 && ev.mouse.y <= 500){desenhar(ev);}
             if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 530 && ev.mouse.y <= 580){limparTela();}
         }
+        //prevePontos(ev);
         marcaPontos(ev);
         al_flip_display();
     }
