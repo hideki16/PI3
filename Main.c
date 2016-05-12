@@ -17,17 +17,6 @@ int main(){
     inserePosicoes();
     AlgDijkstra(teste, BASE, pi, a);
     
-    
-    for(i = 1; i < 46; i++){
-        printf("%d ", pi[i]);
-    }
-    printf("\n");
-    
-    for(i = 1; i < 46; i++){
-       printf("%.f ",a[i]);
-    }
-    printf("\n");
-    
     if (!inicializar()){return -1;}
     
     al_clear_to_color(al_map_rgb(250,250,250));
@@ -52,3 +41,15 @@ int main(){
     destroy();
     return 0;
 }
+
+/*
+for(i = 1; i < 46; i++){
+        printf("%d ", pi[i]);
+    }
+    printf("\n");
+    
+    for(i = 1; i < 46; i++){
+       printf("%.f ",a[i]);
+    }
+    printf("\n");
+*/
