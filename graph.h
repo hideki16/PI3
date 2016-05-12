@@ -4,7 +4,7 @@
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
-#define BASE 27
+#define BASE 21
 
 Vertex points[8];
 int numberOfPoints = 0;
