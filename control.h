@@ -1,5 +1,5 @@
 #include "graph.h"
-#include "init.h" 
+#include "init.h"
 
 int i=0, aux, dmin, dmin2, xmin, ymin, ymin2;
 Vertex prox;
@@ -82,7 +82,7 @@ void marcaPontos(ALLEGRO_EVENT ev){
     if(ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
     	for(i = 1; i<= 45; i++){
 	    	  	ymin2 = ((ev.mouse.x - posicoes[i].x) * (ev.mouse.x - posicoes[i].x)) + ((ev.mouse.y - posicoes[i].y) * (ev.mouse.y - posicoes[i].y));
-	
+
     	 	if(ymin2 < dmin2){
     	        dmin2 = ymin2;
     	        prox2 = i;
@@ -106,4 +106,12 @@ void limparTela()
     al_draw_bitmap(imagem, 0,0,0);
     al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
     al_flip_display();
+}
+
+void construirRota()
+{
+    for(i = 0; i < numberOfPoints; i++)
+    {
+        routeConstruct(points[i], pi);
+    }
 }
