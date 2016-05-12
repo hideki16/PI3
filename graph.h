@@ -6,7 +6,7 @@
 #define maxV 100
 #define BASE 27
 
-Vertex points[5];
+Vertex points[8];
 int numberOfPoints = 0;
 
 typedef struct node *link2;
@@ -333,7 +333,7 @@ posicoes[37].y = 508;
 posicoes[38].x = 936;
 posicoes[38].y = 500;
 posicoes[39].x = 1098;
-posicoes[39].y = 490;
+posicoes[39].y = 480;
 
 posicoes[40].x = 140;
 posicoes[40].y = 612;

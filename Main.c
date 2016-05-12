@@ -11,7 +11,7 @@
 bool inicializar();
 void desenhar(ALLEGRO_EVENT ev1, int q, int w);
 
-const int LARGURA_TELA = 1100;
+const int LARGURA_TELA = 1300;
 const int ALTURA_TELA = 648;
 
 int i=0, aux, dmin, xmin, ymin;
@@ -60,15 +60,15 @@ printf("\n");
       	ALLEGRO_EVENT ev;
       	al_wait_for_event(event_queue, &ev);
 
-        al_draw_bitmap(imagem, 0,0,0);
+        //al_draw_bitmap(imagem, 0,0,0);
 
       	if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
        	  break;
       	}
-
         desenhar(ev, ev.mouse.x, ev.mouse.y);
-   }
 
+        al_flip_display();
+   }
    al_destroy_display(janela);
    al_destroy_event_queue(event_queue);
    al_destroy_bitmap(imagem);
@@ -128,7 +128,7 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
 {
     ALLEGRO_EVENT ev2;
     if(ev1.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-            posicao(q,w);
+            //posicao(q,w);
                 for(i = 1; i<= 45; i++){
                   ymin = ((ev1.mouse.x - posicoes[i].x) * (ev1.mouse.x - posicoes[i].x)) + ((ev1.mouse.y - posicoes[i].y) * (ev1.mouse.y - posicoes[i].y));
 
@@ -141,28 +141,27 @@ void desenhar(ALLEGRO_EVENT ev1, int q, int w)
                 routeConstruct(prox,pi);
                 al_draw_bitmap(icon, posicoes[prox].x- 10, posicoes[prox].y - 35,0);
                 al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
-                al_flip_display();
+                desenharPonto(prox);
                 dmin = INT_MAX;
 }
 }
 
-/*
-for(i = 1 ; i < 46; i++)
-                {
-                    if(ev1.mouse.x > posicoes[i].x && ev1.mouse.x < posicoes[i+1].x)
-                    {
-                        if(ev1.mouse.x - posicoes[i].x < posicoes[i+1].x - ev1.mouse.x)
-                        {
-                            aux = i;
-                            printf("no Teste");
+void desenharPonto(Vertex w)
+{
 
-                        }
-                        else
-                        {
-                            printf("Teste");
-                            aux = i+1;
+       points[numberOfPoints] = w;
+       numberOfPoints++;
+       for(i = 0; i < numberOfPoints; i++)
+       {
+           printf("%d\n", points[i]);
+       }
 
-                        }
-                    }
-                }
-*/
+}
+
+void limparTela()
+{
+numberOfPoints = 0;
+ al_draw_bitmap(imagem, 0,0,0);
+ al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
+}
+
