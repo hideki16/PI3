@@ -5,6 +5,9 @@ int i=0, aux, dmin, dmin2, xmin, ymin, ymin2;
 Vertex prox;
 Vertex prox2;
 Vertex pi[46];
+double a[46];
+Vertex points[8][2];
+int numberOfPoints = 0;
 
 void desenhar(ALLEGRO_EVENT ev);
 void marcaPontos(ALLEGRO_EVENT ev);
@@ -40,21 +43,22 @@ void desenharPonto(Vertex w)
 
         for(i = 0; i < numberOfPoints; i++)
         {
-          if(points[i] == w){
+          if(points[i][0] == w){
             hasPoint = true;
             break;
           }
         }
 
         if(!hasPoint){
-          points[numberOfPoints] = w;
+          points[numberOfPoints][0] = w;
+          points[numberOfPoints][1] = 0;
           numberOfPoints++;
         }
 
 
        for(i = 0; i < numberOfPoints; i++)
        {
-           printf("%d ", points[i]);
+           printf("%d(%d) ", points[i][0], points[i][1]);
        }
        printf("\n");
 
@@ -112,6 +116,59 @@ void construirRota()
 {
     for(i = 0; i < numberOfPoints; i++)
     {
-        routeConstruct(points[i], pi);
+        routeConstruct(points[i][0], pi);
     }
 }
+
+
+bool pontosCobertos(){
+
+	for(i = 0; i < numberOfPoints; i++)
+	{
+		if(points[i][1] == 0)
+			return false;
+	}
+return true;
+}
+
+void construirRota2(int numCiclistas){
+	int j = 0, k = 0, *w, *v, aux = 0, maior = INT_MIN, state = 0, x;
+	w = malloc(numCiclistas * sizeof(int));
+	v = malloc(numCiclistas * sizeof(int));
+
+	for(j = 0; j < numCiclistas; j++){
+		w[j] = INT_MAX;
+	}
+
+	//while(!pontosCobertos()){
+		for(j = 0; j < numberOfPoints; j++){
+			aux = a[points[j][0]];
+
+
+			for(k = 0; k < numCiclistas; k++){
+				if(aux < w[k])
+					state = 1;
+
+				if(w[k] > maior){
+					maior = w[k];
+					x = k;
+				
+				}
+			}
+
+			if(state == 1){
+				w[x] = aux;
+				v[x] = points[j][0];
+			}
+
+			state = 0;
+			maior = INT_MIN;
+		}
+	//}
+for(k = 0; k < numCiclistas; k++){
+	printf("%d\n", v[k]);
+}
+free(w);
+free(v);
+}
+

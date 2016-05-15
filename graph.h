@@ -6,8 +6,6 @@
 #define maxV 100
 #define BASE 21
 
-Vertex points[8];
-int numberOfPoints = 0;
 
 typedef struct node *link2;
 struct node {
@@ -128,10 +126,16 @@ void routeConstruct(Vertex w, Vertex pi[]){
 
 }
 
+void routeConstruct2(Vertex w, Vertex pi[], int base)
+{
+   while(w != base){
+          //printf("%\nh%d\n", w);
+      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(0,255,0),4);
+      w = pi[w];
 
-void calculaRotas(int numberOfPoints){
-
+   }
 }
+
 
 void insereArestas(Digraph digraph){
    DIGRAPHinsertA(digraph, 1, 7, 120);
