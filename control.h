@@ -1,7 +1,8 @@
 #include "graph.h"
 #include "init.h"
 
-int i=0, aux, dmin, dmin2, xmin, ymin, ymin2;
+int i=0, aux, dmin, dmin2, xmin, ymin, ymin2,j;
+bool routeOn = false;
 Vertex prox;
 Vertex prox2;
 Vertex pi[46];
@@ -12,6 +13,7 @@ int numberOfPoints = 0;
 void desenhar(ALLEGRO_EVENT ev);
 void marcaPontos(ALLEGRO_EVENT ev);
 void desenharPonto(Vertex w);
+void construirRota();
 void limparTela();
 
 void posicao(int q, int w)
@@ -82,10 +84,10 @@ void marcaPontos(ALLEGRO_EVENT ev){
     }
 }
 
-/*void prevePontos(ALLEGRO_EVENT ev){
+void prevePontos(ALLEGRO_EVENT ev){
     if(ev.type == ALLEGRO_EVENT_MOUSE_AXES) {
     	for(i = 1; i<= 45; i++){
-	    	  	ymin2 = ((ev.mouse.x - posicoes[i].x) * (ev.mouse.x - posicoes[i].x)) + ((ev.mouse.y - posicoes[i].y) * (ev.mouse.y - posicoes[i].y));
+	    	ymin2 = ((ev.mouse.x - posicoes[i].x) * (ev.mouse.x - posicoes[i].x)) + ((ev.mouse.y - posicoes[i].y) * (ev.mouse.y - posicoes[i].y));
 
     	 	if(ymin2 < dmin2){
     	        dmin2 = ymin2;
@@ -93,18 +95,31 @@ void marcaPontos(ALLEGRO_EVENT ev){
     	    }
     	}
     	if(ev.mouse.x < 1100){
-    		limparTela();
-    		al_draw_filled_circle(posicoes[prox2].x, posicoes[prox2].y, 10, al_map_rgb(0, 0, 0));
+    		al_clear_to_color(al_map_rgb(250,250,250));
+            al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
+            al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
+            al_draw_bitmap(imagem, 0,0,0);
+            al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
+            al_flip_display();
+
+            if(routeOn){construirRota();}
+
+            for(j = 0; j < numberOfPoints; j++){
+            al_draw_bitmap(icon, posicoes[points[j][0]].x- 10, posicoes[points[j][0]].y - 35,0);
+            }
+
+            al_draw_bitmap(icon2, posicoes[prox2].x- 10, posicoes[prox2].y - 35,0);
     		dmin2 = INT_MAX;
     	}
 
 	}
-}*/
+}
 
 void limparTela()
 {
-	numberOfPoints = 0;
-	al_clear_to_color(al_map_rgb(250,250,250));
+    routeOn = false;
+    numberOfPoints = 0;
+    al_clear_to_color(al_map_rgb(250,250,250));
     al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
     al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
     al_draw_bitmap(imagem, 0,0,0);
@@ -118,6 +133,7 @@ void construirRota()
     {
         routeConstruct(points[i][0], pi);
     }
+    routeOn = true;
 }
 
 

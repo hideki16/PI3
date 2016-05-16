@@ -33,7 +33,7 @@ int main(){
             }
             if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 530 && ev.mouse.y <= 580){limparTela();}
         }
-        //prevePontos(ev);
+        prevePontos(ev);
         marcaPontos(ev);
         al_flip_display();
     }
