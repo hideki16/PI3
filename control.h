@@ -5,10 +5,12 @@ int i=0, aux, dmin, dmin2, xmin, ymin, ymin2,j;
 bool routeOn = false;
 Vertex prox;
 Vertex prox2;
-Vertex pi[46];
+int pi[46];
 double a[46];
 Vertex points[8][2];
 int numberOfPoints = 0;
+int parentDistante[46];
+int numVertices = 0;
 
 void desenhar(ALLEGRO_EVENT ev);
 void marcaPontos(ALLEGRO_EVENT ev);
@@ -102,7 +104,7 @@ void prevePontos(ALLEGRO_EVENT ev){
             al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
             al_flip_display();
 
-            if(routeOn){construirRota();}
+            if(routeOn){construirRota2();}
 
             for(j = 0; j < numberOfPoints; j++){
             al_draw_bitmap(icon, posicoes[points[j][0]].x- 10, posicoes[points[j][0]].y - 35,0);
@@ -147,7 +149,7 @@ bool pontosCobertos(){
 return true;
 }
 
-void construirRota2(int numCiclistas){
+/*void construirRota2(int numCiclistas){
 	int j = 0, k = 0, *w, *v, aux = 0, maior = INT_MIN, state = 0, x;
 	w = malloc(numCiclistas * sizeof(int));
 	v = malloc(numCiclistas * sizeof(int));
@@ -186,5 +188,62 @@ for(k = 0; k < numCiclistas; k++){
 }
 free(w);
 free(v);
+}*/
+
+
+Vertex verticeDistante(){
+	int maiorDist = INT_MIN;
+	Vertex maiorVertex;
+
+	for(i = 0; i < numberOfPoints; i++){
+		if(points[i][1] == 0){
+			if(a[points[i][0]] > maiorDist){
+				maiorDist = a[points[i][0]];
+				maiorVertex = points[i][0];
+				j = i;
+			}
+		}
+	}
+	points[j][1] = 1;
+	return maiorVertex;
 }
 
+void caminhoVertexDistante(int maiorVertex){
+	int w = maiorVertex;
+	i = 0;
+	while(pi[w] != BASE){
+		parentDistante[i] = pi[w];
+		numVertices++;
+		i++;
+		w = pi[w];
+	}
+}
+
+
+void printaPoints(){
+
+}
+void verificaPontosComuns(){
+	for(i = 0; i < numVertices; i++){
+		for(j = 0; j < numberOfPoints; j++){
+			if(points[j][1] == 0){
+				if(points[j][0] == parentDistante[i]){
+					points[j][1] = 1;
+				}
+			}
+		}
+	}
+}
+
+void construirRota2(){
+	while(!pontosCobertos()){
+	Vertex maiorVertex = verticeDistante();
+	printf("\n %d \n", maiorVertex);
+	caminhoVertexDistante(maiorVertex);
+	verificaPontosComuns();
+	routeConstruct(maiorVertex, pi);
+	numVertices = 0;
+}
+
+routeOn = true;
+}

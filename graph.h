@@ -4,7 +4,7 @@
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
-#define BASE 21
+#define BASE 1
 
 
 typedef struct node *link2;
@@ -117,9 +117,20 @@ void AlgDijkstra( Digraph G, Vertex s, Vertex parent[],
 
 
 void routeConstruct(Vertex w, Vertex pi[]){
+   int cor;
+   int cor2;
+
+
+   if(w > 27){
+      cor = w * 4;
+      cor2 = w * 2;
+   }else{
+      cor = w * 4;
+      cor2 = w * 5;
+   }
    while(w != BASE){
           //printf("%\nh%d\n", w);
-      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(0,255,0),4);
+      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(cor, cor2, 0),4);
       w = pi[w];
 
    }
