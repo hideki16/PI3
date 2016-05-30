@@ -28,9 +28,7 @@ int main(){
 
         if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {break;}
         if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 450 && ev.mouse.y <= 500){//construirRota();
-            construirRota2();
-            }
+            if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 450 && ev.mouse.y <= 500){construirRota2(3);}
             if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 530 && ev.mouse.y <= 580){limparTela();}
         }
         prevePontos(ev);

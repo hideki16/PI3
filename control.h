@@ -11,11 +11,15 @@ Vertex points[8][2];
 int numberOfPoints = 0;
 int parentDistante[46];
 int numVertices = 0;
+int pointsLeft = 0;
+int numCiclistas = 0;
+
 
 void desenhar(ALLEGRO_EVENT ev);
 void marcaPontos(ALLEGRO_EVENT ev);
 void desenharPonto(Vertex w);
 void construirRota();
+void construirRota2();
 void limparTela();
 
 void posicao(int q, int w)
@@ -97,7 +101,7 @@ void prevePontos(ALLEGRO_EVENT ev){
     	    }
     	}
     	if(ev.mouse.x < 1100){
-    		al_clear_to_color(al_map_rgb(250,250,250));
+    		    al_clear_to_color(al_map_rgb(250,250,250));
             al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
             al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
             al_draw_bitmap(imagem, 0,0,0);
@@ -205,6 +209,8 @@ Vertex verticeDistante(){
 		}
 	}
 	points[j][1] = 1;
+  numCiclistas--;
+  pointsLeft--;
 	return maiorVertex;
 }
 
@@ -219,28 +225,31 @@ void caminhoVertexDistante(int maiorVertex){
 	}
 }
 
-
-void printaPoints(){
-
-}
 void verificaPontosComuns(){
 	for(i = 0; i < numVertices; i++){
 		for(j = 0; j < numberOfPoints; j++){
 			if(points[j][1] == 0){
 				if(points[j][0] == parentDistante[i]){
 					points[j][1] = 1;
+          pointsLeft--;
 				}
 			}
 		}
 	}
 }
 
-void construirRota2(){
+void construirRota2(int x){
+numCiclistas = x;
+pointsLeft = numberOfPoints;
+Vertex maiorVertex = 0;
+
 	while(!pontosCobertos()){
-	Vertex maiorVertex = verticeDistante();
-	printf("\n %d \n", maiorVertex);
+	maiorVertex = verticeDistante();
+  printf("\n%d\n", maiorVertex);
 	caminhoVertexDistante(maiorVertex);
 	verificaPontosComuns();
+ // if(numCiclistas == 1)
+   // printf("estou aqui aff %d\n", pointsLeft);
 	routeConstruct(maiorVertex, pi);
 	numVertices = 0;
 }
