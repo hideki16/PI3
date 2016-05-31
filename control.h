@@ -2,7 +2,7 @@
 #include "init.h"
 
 int i=0, aux, dmin, dmin2, xmin, ymin, ymin2,j;
-bool routeOn = false;
+bool routeOn = false, calculouRota = false;
 Vertex prox;
 Vertex prox2;
 int pi[46];
@@ -100,25 +100,26 @@ void prevePontos(ALLEGRO_EVENT ev){
     	        prox2 = i;
     	    }
     	}
-    	if(ev.mouse.x < 1100){
-    		    al_clear_to_color(al_map_rgb(250,250,250));
-            al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
-            al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
-            al_draw_bitmap(imagem, 0,0,0);
-            al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
-            al_flip_display();
-
-            if(routeOn){construirRota2();}
-
-            for(j = 0; j < numberOfPoints; j++){
-            al_draw_bitmap(icon, posicoes[points[j][0]].x- 10, posicoes[points[j][0]].y - 35,0);
-            }
-
-            al_draw_bitmap(icon2, posicoes[prox2].x- 10, posicoes[prox2].y - 35,0);
-    		dmin2 = INT_MAX;
-    	}
-
 	}
+  al_clear_to_color(al_map_rgb(250,250,250));
+        al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
+        al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
+        al_draw_bitmap(imagem, 0,0,0);
+        al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
+        al_draw_textf(font, al_map_rgb(0,0,0), 1200, 100, 0, "%d", numCiclistas);
+        al_draw_rectangle(1195, 95, 1220, 85, al_map_rgb(1, 1, 1), 1);
+        al_draw_rectangle(1195, 140, 1220, 130, al_map_rgb(1, 1, 1), 1);
+        al_flip_display();
+
+
+        if(routeOn){construirRota2();}
+
+        for(j = 0; j < numberOfPoints; j++){
+          al_draw_bitmap(icon, posicoes[points[j][0]].x- 10, posicoes[points[j][0]].y - 35,0);
+        }
+
+        al_draw_bitmap(icon2, posicoes[prox2].x- 10, posicoes[prox2].y - 35,0);
+        dmin2 = INT_MAX;
 }
 
 void limparTela()
@@ -130,7 +131,11 @@ void limparTela()
     al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
     al_draw_bitmap(imagem, 0,0,0);
     al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
+    al_draw_textf(font, al_map_rgb(0,0,0), 1200, 100, 0, "%d", numCiclistas);
+    al_draw_rectangle(1195, 95, 1220, 85, al_map_rgb(1, 1, 1), 1);
+    al_draw_rectangle(1195, 140, 1220, 130, al_map_rgb(1, 1, 1), 1);
     al_flip_display();
+
 }
 
 void construirRota()
