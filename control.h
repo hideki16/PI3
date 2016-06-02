@@ -13,6 +13,7 @@ int parentDistante[46];
 int numVertices = 0;
 int pointsLeft = 0;
 int numCiclistas = 0;
+Digraph digraph;
 
 
 void desenhar(ALLEGRO_EVENT ev);
@@ -21,6 +22,16 @@ void desenharPonto(Vertex w);
 void construirRota();
 void construirRota2();
 void limparTela();
+
+void construirGrafo(){
+	digraph = DIGRAPHinit(46);
+    insereArestas(digraph);
+    inserePosicoes();
+    AlgDijkstra(digraph, BASE, pi, a);
+ 
+
+}
+
 
 void posicao(int q, int w)
 {
@@ -64,11 +75,13 @@ void desenharPonto(Vertex w)
         }
 
 
-       for(i = 0; i < numberOfPoints; i++)
+     /* for(i = 0; i < numberOfPoints; i++)
        {
            printf("%d(%d) ", points[i][0], points[i][1]);
        }
        printf("\n");
+
+       */
 
 }
 
@@ -142,6 +155,7 @@ void construirRota()
 {
     for(i = 0; i < numberOfPoints; i++)
     {
+    	if(points[i][1] == 0)
         routeConstruct(points[i][0], pi);
     }
     routeOn = true;
@@ -219,6 +233,23 @@ Vertex verticeDistante(){
 	return maiorVertex;
 }
 
+Vertex verticePerto(){
+		int menorDist = INT_MAX;
+	Vertex menorVertex;
+
+	for(i = 0; i < numberOfPoints; i++){
+		if(points[i][1] == 0){
+			if(a[points[i][0]] < menorDist){
+				menorDist = a[points[i][0]];
+				menorVertex = points[i][0];
+				j = i;
+			}
+		}
+	}
+	points[j][1] = 1;
+	return menorVertex;
+}
+
 void caminhoVertexDistante(int maiorVertex){
 	int w = maiorVertex;
 	i = 0;
@@ -243,21 +274,61 @@ void verificaPontosComuns(){
 	}
 }
 
+void calculaProQueSobrou(){
+
+Vertex menorVertex;
+int baseatual = BASE;
+
+while(!pontosCobertos()){
+	menorVertex = verticePerto();
+	//printf("\n\n%d %d\n\n",baseatual, menorVertex);
+	routeConstruct2(menorVertex, pi, baseatual);
+	baseatual = menorVertex;
+
+	AlgDijkstra(digraph, menorVertex, pi, a);
+
+}
+AlgDijkstra(digraph, BASE, pi, a);
+}
+
+
 void construirRota2(int x){
 numCiclistas = x;
 pointsLeft = numberOfPoints;
 Vertex maiorVertex = 0;
+int state = 0;
 
+if(numCiclistas == pointsLeft){
+	state = 1;
+}else if(numCiclistas == 1){
+	state = 0;
+}else{
 	while(!pontosCobertos()){
 	maiorVertex = verticeDistante();
-  printf("\n%d\n", maiorVertex);
+  	printf("\n%d\n", maiorVertex);
 	caminhoVertexDistante(maiorVertex);
 	verificaPontosComuns();
- // if(numCiclistas == 1)
-   // printf("estou aqui aff %d\n", pointsLeft);
+
 	routeConstruct(maiorVertex, pi);
+
+if(numCiclistas == 1)
+   	break;
+
+		if(numCiclistas == pointsLeft)
+   	{
+   		state = 1;
+   		break;
+   	}
 	numVertices = 0;
 }
+}
 
+if(state == 1)
+	construirRota();
+else if(state == 0)
+{
+calculaProQueSobrou();
+}
+printf("\n---------------------\n");
 routeOn = true;
 }

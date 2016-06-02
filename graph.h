@@ -4,7 +4,7 @@
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
-#define BASE 1
+#define BASE 21
 
 
 typedef struct node *link2;
@@ -141,7 +141,7 @@ void routeConstruct2(Vertex w, Vertex pi[], int base)
 {
    while(w != base){
           //printf("%\nh%d\n", w);
-      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(0,255,0),4);
+      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(255,255,0),4);
       w = pi[w];
 
    }
@@ -344,8 +344,8 @@ posicoes[37].x = 753;
 posicoes[37].y = 508;
 posicoes[38].x = 936;
 posicoes[38].y = 500;
-posicoes[39].x = 1098;
-posicoes[39].y = 480;
+posicoes[39].x = 1103;
+posicoes[39].y = 488;
 
 posicoes[40].x = 140;
 posicoes[40].y = 612;
