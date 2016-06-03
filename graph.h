@@ -4,7 +4,7 @@
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
-#define BASE 21
+#define BASE 14
 
 
 typedef struct node *link2;
@@ -122,11 +122,11 @@ void routeConstruct(Vertex w, Vertex pi[]){
 
 
    if(w > 27){
-      cor = w * 4;
-      cor2 = w * 2;
+      cor = w * 5;
+      cor2 = w * 3;
    }else{
-      cor = w * 4;
-      cor2 = w * 5;
+      cor = w * 5;
+      cor2 = w * 3;
    }
    while(w != BASE){
           //printf("%\nh%d\n", w);

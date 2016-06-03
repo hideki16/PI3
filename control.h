@@ -214,6 +214,11 @@ free(v);
 }*/
 
 
+void zerarPoints(){
+	for(i = 0; i < numberOfPoints; i++){
+		points[i][1] = 0; 
+	}
+}
 Vertex verticeDistante(){
 	int maiorDist = INT_MIN;
 	Vertex maiorVertex;
