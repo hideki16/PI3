@@ -4,7 +4,7 @@
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
-#define BASE 14
+#define BASE 16
 
 
 typedef struct node *link2;
