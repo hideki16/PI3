@@ -5,8 +5,8 @@ int i=0, aux, dmin, dmin2, xmin, ymin, ymin2,j;
 bool routeOn = false, calculouRota = false;
 Vertex prox;
 Vertex prox2;
-int pi[46];
-double a[46];
+int pi[46], pi2[46], auxiliar[46];
+double a[46], a2[46];
 Vertex points[8][2];
 int numberOfPoints = 0;
 int parentDistante[46];
@@ -238,7 +238,7 @@ Vertex verticeDistante(){
 	return maiorVertex;
 }
 
-Vertex verticePerto(){
+Vertex verticePerto(double a[]){
 		int menorDist = INT_MAX;
 	Vertex menorVertex;
 
@@ -285,7 +285,7 @@ Vertex menorVertex;
 int baseatual = BASE;
 
 while(!pontosCobertos()){
-	menorVertex = verticePerto();
+	menorVertex = verticePerto(a);
 	//printf("\n\n%d %d\n\n",baseatual, menorVertex);
 	routeConstruct2(menorVertex, pi, baseatual);
 	baseatual = menorVertex;
@@ -293,6 +293,47 @@ while(!pontosCobertos()){
 	AlgDijkstra(digraph, menorVertex, pi, a);
 
 }
+AlgDijkstra(digraph, BASE, pi, a);
+}
+
+
+void calculaProsDoisQueSobraram(){
+	
+	
+int qualEstou = 0, verticeProximo;
+
+	Vertex verticePerto1 = verticePerto(a);
+	for(i = 0; i < 46; i++){
+		auxiliar[i] = pi[i];
+	}
+	routeConstruct2(verticePerto1, auxiliar, BASE);
+	AlgDijkstra(digraph, verticePerto1, pi, a);
+
+
+	Vertex verticePerto2 = BASE;
+	AlgDijkstra(digraph, verticePerto2, pi2, a2);
+
+while(!pontosCobertos()){
+
+	if(qualEstou == 0)
+		verticeProximo = verticePerto(a);
+	else if(qualEstou == 1)
+		verticeProximo = verticePerto(a2);
+
+		if(a[verticeProximo] < a2[verticeProximo]){
+			routeConstruct2(verticeProximo, pi, verticePerto1);
+			verticePerto1 = verticeProximo;
+			AlgDijkstra(digraph, verticePerto1, pi, a);
+			qualEstou = 0;
+
+		}else{
+			routeConstruct3(verticeProximo, pi2, verticePerto2);
+			verticePerto2 = verticeProximo;
+			AlgDijkstra(digraph, verticePerto2, pi2, a2);
+			qualEstou = 1;
+		}
+}
+
 AlgDijkstra(digraph, BASE, pi, a);
 }
 
@@ -306,6 +347,8 @@ int state = 0;
 if(numCiclistas == pointsLeft){
 	state = 1;
 }else if(numCiclistas == 1){
+	state = 2;
+}else if(numCiclistas == 2){
 	state = 0;
 }else{
 	while(!pontosCobertos()){
@@ -316,23 +359,28 @@ if(numCiclistas == pointsLeft){
 
 	routeConstruct(maiorVertex, pi);
 
-if(numCiclistas == 1)
-   	break;
+
 
 		if(numCiclistas == pointsLeft)
    	{
    		state = 1;
    		break;
    	}
+
+   	if(numCiclistas == 2)
+   		break;
+
 	numVertices = 0;
 }
 }
 
 if(state == 1)
 	construirRota();
-else if(state == 0)
+else if(state == 2)
 {
 calculaProQueSobrou();
+}else if(state == 0){
+	calculaProsDoisQueSobraram();
 }
 printf("\n---------------------\n");
 routeOn = true;
