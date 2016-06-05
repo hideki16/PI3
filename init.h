@@ -17,7 +17,7 @@ ALLEGRO_BITMAP *icon = NULL;
 ALLEGRO_BITMAP *icon1 = NULL;
 ALLEGRO_BITMAP *icon2 = NULL;
 ALLEGRO_FONT *font = NULL;
-
+ALLEGRO_COLOR c[8];
 
 bool inicializar()
 {
@@ -69,6 +69,15 @@ bool inicializar()
     icon = al_load_bitmap("iconMapa.png");
     icon1 = al_load_bitmap("iconMapa2.png");
     icon2 = al_load_bitmap("iconmap2.png");
+    c[0] = al_map_rgba_f(255, 255, 0, 0.5);
+    c[1] = al_map_rgba_f(255, 0, 0, 0.5);
+    c[2] = al_map_rgba_f(0,0,255, 0.5);
+    c[3] = al_map_rgba_f(0,255,0, 0.5);
+    c[4] = al_map_rgba_f(255,0,255, 0.5);
+    c[5] = al_map_rgba_f(0,255,255, 0.5);
+    c[6] = al_map_rgba_f(105,105,105, 0.5);
+    c[7] = al_map_rgba_f(255,140,0,0.5);
+
    al_register_event_source(event_queue, al_get_display_event_source(janela));
    al_register_event_source(event_queue, al_get_mouse_event_source());
 

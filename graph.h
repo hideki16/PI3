@@ -1,11 +1,13 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include "init.h"
 
 #define Vertex int
 #define INFINITO 100000
 #define maxV 100
 #define BASE 16
 
+int corAtual = 0;
 
 typedef struct node *link2;
 struct node {
@@ -130,18 +132,18 @@ void routeConstruct(Vertex w, Vertex pi[]){
    }
    while(w != BASE){
           //printf("%\nh%d\n", w);
-      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(cor, cor2, 0),4);
+      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, c[corAtual],6);
       w = pi[w];
 
    }
-
+   corAtual++;
 }
 
 void routeConstruct2(Vertex w, Vertex pi[], int base)
 {
    while(w != base){
          // printf("%\noshoshosh %d\n", w);
-      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(255,255,0),4);
+      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, c[corAtual], 6);
       w = pi[w];
 
    }
@@ -151,7 +153,7 @@ void routeConstruct3(Vertex w, Vertex pi[], int base)
 {
    while(w != base){
          // printf("%\noshoshosh %d\n", w);
-      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(0,255,255),4);
+      al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, c[corAtual + 1],6);
       w = pi[w];
 
    }

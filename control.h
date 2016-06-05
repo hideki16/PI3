@@ -1,5 +1,4 @@
 #include "graph.h"
-#include "init.h"
 
 int i=0, aux, dmin, dmin2, xmin, ymin, ymin2,j;
 bool routeOn = false, calculouRota = false;
@@ -12,7 +11,7 @@ int numberOfPoints = 0;
 int parentDistante[46];
 int numVertices = 0;
 int pointsLeft = 0;
-int numCiclistas = 1;
+int numCiclistas = 0;
 Digraph digraph;
 
 
@@ -60,6 +59,7 @@ void desenharPonto(Vertex w)
 {
         bool hasPoint = false;
 
+        if(numCiclistas == 0){numCiclistas = 1;}
         for(i = 0; i < numberOfPoints; i++)
         {
           if(points[i][0] == w){
@@ -73,16 +73,6 @@ void desenharPonto(Vertex w)
           points[numberOfPoints][1] = 0;
           numberOfPoints++;
         }
-
-
-     /* for(i = 0; i < numberOfPoints; i++)
-       {
-           printf("%d(%d) ", points[i][0], points[i][1]);
-       }
-       printf("\n");
-
-       */
-
 }
 
 void marcaPontos(ALLEGRO_EVENT ev){
@@ -95,7 +85,7 @@ void marcaPontos(ALLEGRO_EVENT ev){
                     prox = i;
                   }
                 }
-                if(ev.mouse.x < 1100){
+                if(ev.mouse.x < 1100 && numberOfPoints < 8){
                   al_draw_bitmap(icon, posicoes[prox].x- 10, posicoes[prox].y - 35,0);
                   desenharPonto(prox);
                   dmin = INT_MAX;
@@ -139,6 +129,7 @@ void limparTela()
 {
     routeOn = false;
     numberOfPoints = 0;
+    corAtual = 0;
     al_clear_to_color(al_map_rgb(250,250,250));
     al_draw_bitmap(imagem2, 0,0,0);
     al_draw_bitmap(imagem, 0,0,0);
@@ -171,48 +162,6 @@ bool pontosCobertos(){
 	}
 return true;
 }
-
-/*void construirRota2(int numCiclistas){
-	int j = 0, k = 0, *w, *v, aux = 0, maior = INT_MIN, state = 0, x;
-	w = malloc(numCiclistas * sizeof(int));
-	v = malloc(numCiclistas * sizeof(int));
-
-	for(j = 0; j < numCiclistas; j++){
-		w[j] = INT_MAX;
-	}
-
-	//while(!pontosCobertos()){
-		for(j = 0; j < numberOfPoints; j++){
-			aux = a[points[j][0]];
-
-
-			for(k = 0; k < numCiclistas; k++){
-				if(aux < w[k])
-					state = 1;
-
-				if(w[k] > maior){
-					maior = w[k];
-					x = k;
-				
-				}
-			}
-
-			if(state == 1){
-				w[x] = aux;
-				v[x] = points[j][0];
-			}
-
-			state = 0;
-			maior = INT_MIN;
-		}
-	//}
-for(k = 0; k < numCiclistas; k++){
-	printf("%d\n", v[k]);
-}
-free(w);
-free(v);
-}*/
-
 
 void zerarPoints(){
 	for(i = 0; i < numberOfPoints; i++){

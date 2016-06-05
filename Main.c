@@ -31,12 +31,14 @@ int main(){
 
         if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (ev.mouse.x >= 1110 && ev.mouse.x <= 1290 && ev.mouse.y >= 280 && ev.mouse.y <= 370){
-                construirRota2(numCiclistas);
-                calculouRota = true;
+                if(numCiclistas > 0){
+                    construirRota2(numCiclistas);
+                    calculouRota = true;
+                }
             }
             if (ev.mouse.x >= 1110 && ev.mouse.x <= 1290 && ev.mouse.y >= 380 && ev.mouse.y <= 470){
                 limparTela();
-                numCiclistas = 1;
+                numCiclistas = 0;
                 calculouRota = false;
             }
         }
@@ -45,12 +47,12 @@ int main(){
             if(!calculouRota){
                 if (ev.mouse.x >= 1255 && ev.mouse.x <= 1285 && ev.mouse.y >= 190 && ev.mouse.y <= 210){
                 numCiclistas++;
-                if(numCiclistas > 8){numCiclistas = 8;}
+                if(numCiclistas > numberOfPoints){numCiclistas = numberOfPoints;}
 
                 }
                 if (ev.mouse.x >= 1255 && ev.mouse.x <= 1285 && ev.mouse.y >= 245 && ev.mouse.y <= 265){
                     numCiclistas--;
-                if(numCiclistas < 1) {numCiclistas = 1;}
+                if(numCiclistas < 0) {numCiclistas = 0;}
                 }
             }
         }
