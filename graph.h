@@ -140,7 +140,7 @@ void routeConstruct(Vertex w, Vertex pi[]){
 void routeConstruct2(Vertex w, Vertex pi[], int base)
 {
    while(w != base){
-          printf("%\noshoshosh %d\n", w);
+         // printf("%\noshoshosh %d\n", w);
       al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(255,255,0),4);
       w = pi[w];
 
@@ -150,7 +150,7 @@ void routeConstruct2(Vertex w, Vertex pi[], int base)
 void routeConstruct3(Vertex w, Vertex pi[], int base)
 {
    while(w != base){
-          printf("%\noshoshosh %d\n", w);
+         // printf("%\noshoshosh %d\n", w);
       al_draw_line(posicoes[w].x,posicoes[w].y, posicoes[pi[w]].x, posicoes[pi[w]].y, al_map_rgb(0,255,255),4);
       w = pi[w];
 

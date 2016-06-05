@@ -279,7 +279,7 @@ void verificaPontosComuns(){
 	}
 }
 
-void calculaProQueSobrou(){
+void proximidadeUmCiclista(){
 
 Vertex menorVertex;
 int baseatual = BASE;
@@ -297,7 +297,7 @@ AlgDijkstra(digraph, BASE, pi, a);
 }
 
 
-void calculaProsDoisQueSobraram(){
+void proximidadeDoisCiclistas(){
 	
 	
 int qualEstou = 0, verticeProximo;
@@ -338,6 +338,13 @@ AlgDijkstra(digraph, BASE, pi, a);
 }
 
 
+void calcularPorProximidade(int state){
+	if(state == 0)
+		proximidadeDoisCiclistas();
+	else if(state == 2)
+		proximidadeUmCiclista();
+}
+
 void construirRota2(int x){
 numCiclistas = x;
 pointsLeft = numberOfPoints;
@@ -359,28 +366,26 @@ if(numCiclistas == pointsLeft){
 
 	routeConstruct(maiorVertex, pi);
 
-
-
 		if(numCiclistas == pointsLeft)
-   	{
-   		state = 1;
-   		break;
-   	}
+   		{
+   			state = 1;
+   			break;
+   		}
 
-   	if(numCiclistas == 2)
-   		break;
+   		if(numCiclistas == 2)
+   			break;
 
 	numVertices = 0;
-}
+	}
 }
 
 if(state == 1)
 	construirRota();
 else if(state == 2)
 {
-calculaProQueSobrou();
+	calcularPorProximidade(state);
 }else if(state == 0){
-	calculaProsDoisQueSobraram();
+	calcularPorProximidade(state);
 }
 printf("\n---------------------\n");
 routeOn = true;
