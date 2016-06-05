@@ -30,11 +30,11 @@ int main(){
         if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {break;}
 
         if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 450 && ev.mouse.y <= 500){
+            if (ev.mouse.x >= 1110 && ev.mouse.x <= 1290 && ev.mouse.y >= 280 && ev.mouse.y <= 370){
                 construirRota2(numCiclistas);
                 calculouRota = true;
             }
-            if (ev.mouse.x >= 1150 && ev.mouse.x <= 1250 && ev.mouse.y >= 530 && ev.mouse.y <= 580){
+            if (ev.mouse.x >= 1110 && ev.mouse.x <= 1290 && ev.mouse.y >= 380 && ev.mouse.y <= 470){
                 limparTela();
                 numCiclistas = 1;
                 calculouRota = false;
@@ -42,14 +42,16 @@ int main(){
         }
 
         if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (ev.mouse.x >= 1195 && ev.mouse.x <= 1220 && ev.mouse.y >= 85 && ev.mouse.y <= 95){
+            if(!calculouRota){
+                if (ev.mouse.x >= 1255 && ev.mouse.x <= 1285 && ev.mouse.y >= 190 && ev.mouse.y <= 210){
                 numCiclistas++;
                 if(numCiclistas > 8){numCiclistas = 8;}
 
-            }
-            if (ev.mouse.x >= 1195 && ev.mouse.x <= 1220 && ev.mouse.y >= 130 && ev.mouse.y <= 140){
-                numCiclistas--;
+                }
+                if (ev.mouse.x >= 1255 && ev.mouse.x <= 1285 && ev.mouse.y >= 245 && ev.mouse.y <= 265){
+                    numCiclistas--;
                 if(numCiclistas < 1) {numCiclistas = 1;}
+                }
             }
         }
 
@@ -64,4 +66,13 @@ int main(){
     return 0;
 }
 
+/*
+al_draw_bitmap(botao3, 1110, 180,0);
+al_draw_bitmap(botao, 1110, 280,0);
+al_draw_bitmap(botao2, 1110, 380,0);
+
+al_draw_textf(font, al_map_rgb(0,0,0), 1260, 217, 0, "%d", numCiclistas);
+        al_draw_rectangle(1255, 190, 1285, 210, al_map_rgb(1, 1, 1), 1);
+        al_draw_rectangle(1255, 245, 1285, 265, al_map_rgb(1, 1, 1), 1);
+*/
 

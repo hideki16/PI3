@@ -9,6 +9,10 @@ const int ALTURA_TELA = 648;
 ALLEGRO_DISPLAY *janela = NULL;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_BITMAP *imagem = NULL;
+ALLEGRO_BITMAP *imagem2 = NULL;
+ALLEGRO_BITMAP *botao = NULL;
+ALLEGRO_BITMAP *botao2 = NULL;
+ALLEGRO_BITMAP *botao3 = NULL;
 ALLEGRO_BITMAP *icon = NULL;
 ALLEGRO_BITMAP *icon1 = NULL;
 ALLEGRO_BITMAP *icon2 = NULL;
@@ -55,9 +59,13 @@ bool inicializar()
         return -1;
     }
 
-    font = al_load_font("04B_30__.ttf", 25, 0);
+    font = al_load_font("Dense-Regular.otf", 25, 0);
 
     imagem = al_load_bitmap("telafinal.png");
+    imagem2 = al_load_bitmap("fundo.png");
+    botao = al_load_bitmap("botao.png");
+    botao2 = al_load_bitmap("botao2.png");
+    botao3 = al_load_bitmap("botao3.png");
     icon = al_load_bitmap("iconMapa.png");
     icon1 = al_load_bitmap("iconMapa2.png");
     icon2 = al_load_bitmap("iconmap2.png");
@@ -71,8 +79,12 @@ void destroy(){
 	al_destroy_display(janela);
     al_destroy_event_queue(event_queue);
     al_destroy_bitmap(imagem);
+    al_destroy_bitmap(imagem2);
     al_destroy_bitmap(icon);
     al_destroy_bitmap(icon1);
     al_destroy_bitmap(icon2);
     al_destroy_font(font);
+    al_destroy_bitmap(botao);
+    al_destroy_bitmap(botao2);
+    al_destroy_bitmap(botao3);
 }
