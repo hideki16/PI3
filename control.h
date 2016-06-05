@@ -118,7 +118,7 @@ void prevePontos(ALLEGRO_EVENT ev){
         al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
         al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
         al_draw_bitmap(imagem, 0,0,0);
-        al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
+        al_draw_bitmap(icon1, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
         al_draw_textf(font, al_map_rgb(0,0,0), 1200, 100, 0, "%d", numCiclistas);
         al_draw_rectangle(1195, 95, 1220, 85, al_map_rgb(1, 1, 1), 1);
         al_draw_rectangle(1195, 140, 1220, 130, al_map_rgb(1, 1, 1), 1);
@@ -143,7 +143,7 @@ void limparTela()
     al_draw_rectangle(1150, 500, 1250, 450, al_map_rgb(1, 1, 1), 1);
     al_draw_rectangle(1150, 580, 1250, 530, al_map_rgb(1, 1, 1), 1);
     al_draw_bitmap(imagem, 0,0,0);
-    al_draw_bitmap(icon, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
+    al_draw_bitmap(icon1, posicoes[BASE].x - 10, posicoes[BASE].y - 35,0);
     al_draw_textf(font, al_map_rgb(0,0,0), 1200, 100, 0, "%d", numCiclistas);
     al_draw_rectangle(1195, 95, 1220, 85, al_map_rgb(1, 1, 1), 1);
     al_draw_rectangle(1195, 140, 1220, 130, al_map_rgb(1, 1, 1), 1);

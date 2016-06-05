@@ -10,6 +10,7 @@ ALLEGRO_DISPLAY *janela = NULL;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_BITMAP *imagem = NULL;
 ALLEGRO_BITMAP *icon = NULL;
+ALLEGRO_BITMAP *icon1 = NULL;
 ALLEGRO_BITMAP *icon2 = NULL;
 ALLEGRO_FONT *font = NULL;
 
@@ -58,6 +59,7 @@ bool inicializar()
 
     imagem = al_load_bitmap("telafinal.png");
     icon = al_load_bitmap("iconMapa.png");
+    icon1 = al_load_bitmap("iconMapa2.png");
     icon2 = al_load_bitmap("iconmap2.png");
    al_register_event_source(event_queue, al_get_display_event_source(janela));
    al_register_event_source(event_queue, al_get_mouse_event_source());
@@ -70,6 +72,7 @@ void destroy(){
     al_destroy_event_queue(event_queue);
     al_destroy_bitmap(imagem);
     al_destroy_bitmap(icon);
+    al_destroy_bitmap(icon1);
     al_destroy_bitmap(icon2);
     al_destroy_font(font);
 }
