@@ -12,7 +12,7 @@ int numberOfPoints = 0;
 int parentDistante[46];
 int numVertices = 0;
 int pointsLeft = 0;
-int numCiclistas = 0;
+int numCiclistas = 1;
 Digraph digraph;
 
 
