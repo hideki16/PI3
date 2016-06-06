@@ -11,7 +11,7 @@ int main(){
 
     int i;
     dmin = INT_MAX;
-
+    clock_t endt,start;
     /*Digraph digraph = DIGRAPHinit(46);
     insereArestas(digraph);
     inserePosicoes();
@@ -32,7 +32,10 @@ int main(){
         if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (ev.mouse.x >= 1110 && ev.mouse.x <= 1290 && ev.mouse.y >= 280 && ev.mouse.y <= 370){
                 if(numCiclistas > 0){
+                    start = clock();
                     construirRota2(numCiclistas);
+                    endt = clock();
+                    printf("Tempo gasto: %10.f ms\n\n",1000.0* (double)(endt-start)/(double)(CLOCKS_PER_SEC));
                     calculouRota = true;
                 }
             }
